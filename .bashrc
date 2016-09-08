@@ -5,10 +5,17 @@
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias make='make -s'
 
 # Development aliases and functions
-BLINK_ROOT="/root/BLINK"
-BLINK_SOURCES="/${BLINK_ROOT}/SOURCES"
+BLINK_ROOT="/home/blink/BLINK"
+BLINK_SOURCES="${BLINK_ROOT}/SOURCES"
+
+export BLINK_ROOT
+export BLINK_SOURCES
+
+#alias blink='cd ${BLINK_ROOT}'
+#alias blink_src='cd ${BLINK_SOURCES}'
 
 function dev_rpm_make() {
 	local source_rpm="${BLINK_SOURCES}/blink-base"
@@ -19,8 +26,8 @@ function dev_rpm_make() {
 		return
 	fi
 
-	'mkdir -p ${source_rpm}/{BUILD,RPMS,SOURCES,SPEC,SRPMS,tmp}'
-	'touch ${source_rpm}/SPEC/$1.spec'
+	mkdir -p "${source_rpm}"/{BUILD,RPMS,SOURCES,SPEC,SRPMS,tmp}
+	touch "${source_rpm}/SPEC/$1.spec"
 }
 
 # Source global definitions

@@ -1,16 +1,16 @@
 shell=/bin/bash
 
+PROJECT_DIR=$(shell pwd)
+
 clean:
-	rm -fr "${BLINK_ROOT}/RPMS"/*
-	rm -fr "${BLINK_ROOT}/BUILDROOT"
-	rm -fr "${BLINK_ROOT}/SPECS"
+	rm -fr "${PROJECT_DIR}/RPMS"/*
+	rm -fr "${PROJECT_DIR}/BUILDROOT"
+	rm -fr "${PROJECT_DIR}/SPECS"
 
 rpm:
-	(cd ${BLINK_SOURCES}/blink-base ; make)
+	(cd ${PROJECT_DIR}/blink-base ; make)
 
 rpmclean:
-	(cd ${BLINK_SOURCES}/blink-base ; make clean)
+	(cd ${PROJECT_DIR}/blink-base ; make clean)
 
 all: clean rpmclean rpm
-
-
