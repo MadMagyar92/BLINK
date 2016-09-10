@@ -1,15 +1,23 @@
 shell=/bin/bash
+PROJECT_DIR=$(shell pwd)
+PROJECT_NAME="$(shell basename ${PROJECT_DIR})"
+SOURCES_DIR="${PROJECT_DIR}/SOURCES"
 
 clean:
-	rm -fr "${BLINK_SOURCES}/blink-base/RPMS"/*
-	rm -fr "${BLINK_SOURCES}/blink-base/BUILDROOT"
-	rm -fr "${BLINK_SOURCES}/blink-base/SPECS"
+	rm -fr "${PROJECT_DIR}/RPMS"/*
+	rm -fr "${PROJECT_DIR}/BUILDROOT"
+	rm -fr "${PROJECT_DIR}/SPECS"
 
 rpm:
-	rpmbuild --define '_topdir ${BLINK_SOURCES}/blink-base' --define 'rpmdir ${BLINK_SOURCES}/blink-base' --define '_builddir ${BLINK_SOURCES}/blink-base' -bb -v "${BLINK_SOURCES}/blink-base/SPEC/blink-base.spec"
+	rpmbuild \
+		--define '_topdir ${PROJECT_DIR}' \
+		--define 'rpmdir ${PROJECT_DIR}' \
+		--define '_builddir ${PROJECT_DIR}' \
+		-bb -v "${PROJECT_DIR}/SPEC/${PROJECT_NAME}.spec"
 
-rpmclean:
+rpmclean: clean
 
 all: clean rpm
 
+install:
 

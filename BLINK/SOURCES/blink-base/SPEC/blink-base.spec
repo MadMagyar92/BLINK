@@ -21,7 +21,7 @@ exit 0
 
 %install
 rm -rf ${BLINK_SOURCES}/blink-base/RPMS/*
-#make install DESTDIR=${BLINK_SOURCES}/blink-base/RPMS
+make install DESTDIR=${BLINK_SOURCES}/blink-base/RPMS
 
 %clean
 rm -rf ${RPM_BUILD_ROOT}
